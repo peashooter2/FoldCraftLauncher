@@ -62,6 +62,9 @@ jobs:
   #only for fork
   DebugBuild:
     if: github.repository_owner != 'FCL-Team' || startsWith(github.ref, 'refs/pull/')
+    strategy:
+      matrix:
+        arch: [ "all", "arm", "arm64", "x86", "x86_64" ]
     name: Build Debug
     runs-on: ubuntu-22.04
     steps:
@@ -78,7 +81,7 @@ jobs:
       - name: Build debug apk
         run: |
           chmod +x gradlew
-          ./gradlew assemblefordebug -Darch=all
+          ./gradlew assemblefordebug -Darch=${{matrix.arch}}
 
       - name: Upload debug apk
         uses: actions/upload-artifact@v4
