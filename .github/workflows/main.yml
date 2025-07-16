@@ -78,7 +78,7 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
-      - name: Build debug apk
+      - name: Build debug ${{matrix.arch}} apk
         run: |
           chmod +x gradlew
           ./gradlew assemblefordebug -Darch=${{matrix.arch}}
