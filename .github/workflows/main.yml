@@ -60,6 +60,9 @@ jobs:
   #only for fork
   DebugBuild:
     if: github.repository_owner != 'FCL-Team' || startsWith(github.ref, 'refs/pull/')
+    strategy:
+       matrix:
+        arch: [ "all", "arm", "arm64", "x86", "x86_64" ]
     name: Build Debug
     runs-on: ubuntu-latest
     steps:
